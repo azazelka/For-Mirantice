@@ -7,26 +7,23 @@ def st_parser(filename):
 
 
 def load_file(filename):
-    yml_list = []
     with open(filename, 'r') as fd:
         for item in fd:
             yield item
 
 
 def rec_parser(lst, count=0):
-    count_spase = 3
-    if type(lst) == list:
+    if isinstance(lst, list):
         yml_list = lst
         lst = []
         flag_list = False
         pattern1 = " - "
         pattern2 = " -"
         for i in range(count):
-            pattern1 = "   " + pattern1
-            pattern2 = "   " + pattern2
-
+            pattern1 = "  " + pattern1
+            pattern2 = "  " + pattern2
         for item in yml_list:
-            slice = item[3 + count * count_spase: -1]
+            slice = item[3 + count * 2: -1]
             if item.startswith(pattern1):
                 lst.append(slice)
 
@@ -55,7 +52,6 @@ def yml_parser(file_name):
     str_list = list(load_file(file_name))
     print str_list
     return rec_parser(str_list)
-
 
 print yml_parser('file2.yml')
 st_parser('file2.yml')
