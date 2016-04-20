@@ -21,19 +21,13 @@ def count_space(lst):
 
 def processing_list(lst):
     yml_list = []
-    flag_list = False
     count = count_space(lst)
     start_str = count * " " + "-"
     for item in lst:
-        if item.startswith(start_str + " "):
-            yml_list.append(item[count + 2: -1])
-        elif item.startswith(start_str):
-            flag_list = True
-            yml_list.append([])
-        elif flag_list:
-            yml_list[len(yml_list) - 1].append(item)
+        if item.startswith(start_str):
+            yml_list.append(item[count + 2: -1]) if item[count + 2: -1] else yml_list.append([])
         else:
-            raise IOError
+            yml_list[len(yml_list) - 1].append(item)
     count += 1
     res = []
     for item in yml_list:
