@@ -1,5 +1,4 @@
 import yaml
-from itertools import groupby
 
 
 def st_parser(filename):
@@ -21,28 +20,16 @@ def count_space(lst):
 
 
 def processing_list(lst):
-    yml_list = lst
-    lst = []
-    flag_list = False
-    count = count_space(yml_list)
-    start_str = "- "
-    start_empty_str = "-"
-    for i in range(count):
-        start_str = " " + start_str
-        start_empty_str = " " + start_empty_str
-    for item in yml_list:
-        if item.startswith(start_str):
-            lst.append(item[count + 2: -1])
-        elif item.startswith(start_empty_str):
-            flag_list = True
-            lst.append([])
-        elif flag_list:
-            lst[len(lst) - 1].append(item)
-        else:
-            raise IOError
-    count += 1
-    res = []
+    yml_list = []
+    count = count_space(lst)
+    start_str = count * " " + "-"
     for item in lst:
+        if item.startswith(start_str):
+            yml_list.append(item[count + 2: -1] or [])
+        else:
+            yml_list[len(yml_list) - 1].append(item)
+    res = []
+    for item in yml_list:
         res.append(rec_parser(item))
     return res
 
