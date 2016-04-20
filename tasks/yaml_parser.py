@@ -25,10 +25,9 @@ def processing_list(lst):
     start_str = count * " " + "-"
     for item in lst:
         if item.startswith(start_str):
-            yml_list.append(item[count + 2: -1]) if item[count + 2: -1] else yml_list.append([])
+            yml_list.append(item[count + 2: -1] or [])
         else:
             yml_list[len(yml_list) - 1].append(item)
-    count += 1
     res = []
     for item in yml_list:
         res.append(rec_parser(item))
