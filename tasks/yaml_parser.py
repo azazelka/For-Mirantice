@@ -12,41 +12,6 @@ def load_file(filename):
             yield item
 
 
-# def rec_parser(lst, count=0):
-#     if isinstance(lst, list):
-#         yml_list = lst
-#         lst = []
-#         flag_list = False
-#         pattern1 = " - "
-#         pattern2 = " -"
-#         for i in range(count):
-#             pattern1 = "  " + pattern1
-#             pattern2 = "  " + pattern2
-#         for item in yml_list:
-#             slice = item[3 + count * 2: -1]
-#             if item.startswith(pattern1):
-#                 lst.append(slice)
-#
-#             elif item.startswith(pattern2):
-#                 flag_list = True
-#                 lst.append([])
-#             elif flag_list:
-#                 lst[len(lst) - 1].append(item)
-#             else:
-#                 raise IOError
-#         count += 1
-#         res = []
-#         for item in lst:
-#             res.append(rec_parser(item, count))
-#         return res
-#     else:
-#         if lst.startswith('\'') and lst.endswith('\''):
-#             return lst[1:-1]
-#         elif lst.isdigit():
-#             return int(lst)
-#         else:
-#             raise IOError
-
 def count_space(lst):
     min_count, count = None, 0
     for item in lst:
