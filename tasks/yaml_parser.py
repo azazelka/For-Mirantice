@@ -1,4 +1,5 @@
 import yaml
+from itertools import groupby
 
 
 def st_parser(filename):
@@ -13,16 +14,10 @@ def load_file(filename):
 
 
 def count_space(lst):
-    min_count, count = None, 0
-    for item in lst:
-        for symbol in item:
-            if (not min_count or count < min) and symbol == " ":
-                count += 1
-            else:
-                break
-        if count < min_count or not min_count:
-            min_count = count
-    return min_count
+    for i, c in enumerate(lst[0]):
+        if c != ' ':
+            return i
+    return len(lst[0])
 
 
 def processing_list(lst):
@@ -56,6 +51,9 @@ def rec_parser(lst):
     if isinstance(lst, list):
         return processing_list(lst)
     else:
+        if lst.find(": ") >= 0:
+            spl = lst.split(": ")
+            return {spl[0]: spl[1]}
         if lst.startswith('\'') and lst.endswith('\''):
             return lst[1:-1]
         elif lst.isdigit():
