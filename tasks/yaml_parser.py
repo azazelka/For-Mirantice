@@ -30,7 +30,7 @@ def processing_list(lst):
             yml_list.append(item[count + 2: -1] or [])
         elif item[count] != " " and item.find(":") >= 0:
             a = item.split(":")
-            yml_dict[a[0]] = a[1][0:-1] or []
+            yml_dict[a[0]] = a[1][1:-1] or []
             if not yml_dict[a[0]]:
                 last_dict_key = a[0]
         elif len(yml_list):
