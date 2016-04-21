@@ -14,3 +14,6 @@ class TestYmlParser(unittest.TestCase):
     def test_dict_first2(self):
         result = yaml_parser.st_parser('file1.yml')
         self.assertEqual(yaml_parser.yml_parser('file1.yml'), result)
+
+if __name__ == '__main__':
+    unittest.main()

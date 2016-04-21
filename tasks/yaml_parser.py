@@ -26,9 +26,11 @@ def processing_dict(lst):
     for item in lst:
         if item[count] != " " and item.find(":") >= 0:
             a = item.split(":")
-            yml_dict[a[0][count:]] = a[1][1:-1] or []
-            if not yml_dict[a[0][count:]]:
-                last_dict_key = a[0][count:]
+            element = a[1][1:]
+            key = a[0][count:]
+            yml_dict[key] = element or []
+            if not yml_dict[key]:
+                last_dict_key = key
         elif yml_dict:
             yml_dict[last_dict_key].append(item)
     res2 = {}
@@ -76,6 +78,3 @@ def yml_parser(file_name):
     print str_list
     return rec_parser(str_list)
 
-
-print yml_parser('file1.yml')
-st_parser('file1.yml')

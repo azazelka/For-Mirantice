@@ -1,4 +1,4 @@
- dict: 'item1'
+ dict: 3
  dict2: 'dict'
  dict:
     - 1
