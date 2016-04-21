@@ -19,37 +19,42 @@ def count_space(lst):
     return len(lst[0])
 
 
-def processing_list(lst):
-    yml_list = []
+def processing_dict(lst):
     yml_dict = {}
     count = count_space(lst)
-    start_str = count * " " + "-"
     last_dict_key = None
     for item in lst:
-        if item.startswith(start_str):
-            yml_list.append(item[count + 2: -1] or [])
-        elif item[count] != " " and item.find(":") >= 0:
+        if item[count] != " " and item.find(":") >= 0:
             a = item.split(":")
             yml_dict[a[0]] = a[1][1:-1] or []
             if not yml_dict[a[0]]:
                 last_dict_key = a[0]
-        elif len(yml_list):
-            yml_list[len(yml_list) - 1].append(item)
-        else:
+        elif yml_dict:
             yml_dict[last_dict_key].append(item)
-
-    res = []
-    for item in yml_list:
-        res.append(rec_parser(item))
     res2 = {}
     for key in yml_dict:
         res2[key] = rec_parser(yml_dict[key])
-    return res or res2
+    return res2
+
+
+def processing_list(lst):
+    yml_list = []
+    count = count_space(lst)
+    start_str = count * " " + "-"
+    for item in lst:
+        if item.startswith(start_str):
+            yml_list.append(item[count + 2: -1] or [])
+        elif len(yml_list):
+            yml_list[len(yml_list) - 1].append(item)
+    res = []
+    for item in yml_list:
+        res.append(rec_parser(item))
+    return res
 
 
 def rec_parser(lst):
     if isinstance(lst, list):
-        return processing_list(lst)
+        return processing_list(lst) or processing_dict(lst)
     else:
         if lst.find(": ") >= 0:
             spl = lst.split(": ")
