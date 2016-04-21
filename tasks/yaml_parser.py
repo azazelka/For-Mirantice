@@ -3,7 +3,7 @@ import yaml
 
 def st_parser(filename):
     with open(filename, 'r') as fd:
-        print yaml.load(fd)
+        return yaml.load(fd)
 
 
 def load_file(filename):
@@ -26,9 +26,9 @@ def processing_dict(lst):
     for item in lst:
         if item[count] != " " and item.find(":") >= 0:
             a = item.split(":")
-            yml_dict[a[0][1:]] = a[1][1:] or []
-            if not yml_dict[a[0][1:]]:
-                last_dict_key = a[0][1:]
+            yml_dict[a[0][count:]] = a[1][1:-1] or []
+            if not yml_dict[a[0][count:]]:
+                last_dict_key = a[0][count:]
         elif yml_dict:
             yml_dict[last_dict_key].append(item)
     res2 = {}
