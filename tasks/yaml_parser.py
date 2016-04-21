@@ -21,17 +21,30 @@ def count_space(lst):
 
 def processing_list(lst):
     yml_list = []
+    yml_dict = {}
     count = count_space(lst)
     start_str = count * " " + "-"
+    last_dict_key = None
     for item in lst:
         if item.startswith(start_str):
             yml_list.append(item[count + 2: -1] or [])
-        else:
+        elif item[count] != " " and item.find(":") >= 0:
+            a = item.split(":")
+            yml_dict[a[0]] = a[1][0:-1] or []
+            if not yml_dict[a[0]]:
+                last_dict_key = a[0]
+        elif len(yml_list):
             yml_list[len(yml_list) - 1].append(item)
+        else:
+            yml_dict[last_dict_key].append(item)
+
     res = []
     for item in yml_list:
         res.append(rec_parser(item))
-    return res
+    res2 = {}
+    for key in yml_dict:
+        res2[key] = rec_parser(yml_dict[key])
+    return res or res2
 
 
 def rec_parser(lst):
@@ -55,5 +68,5 @@ def yml_parser(file_name):
     return rec_parser(str_list)
 
 
-print yml_parser('file2.yml')
-st_parser('file2.yml')
+print yml_parser('file3.yml')
+st_parser('file3.yml')
