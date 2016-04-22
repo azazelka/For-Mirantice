@@ -35,6 +35,20 @@ def is_dict_line(line, count):
 
     return True
 
+
+def add_item(str):
+    if str.startswith('\'') and str.endswith('\''):
+        return str[1:]
+    elif str.startswith('\'') and str.endswith('\'\n'):
+        return str[1:-2]
+    elif str[0:-1].isdigit() and str.endswith('\n'):
+        return int(str[0:-1])
+    elif str.isdigit():
+        return int(str)
+    else:
+        raise IOError
+
+
 def processing_dict(lst):
     res = {}
     data_iter = iter(lst)
@@ -44,7 +58,9 @@ def processing_dict(lst):
 
     while line:
         if not is_dict_line(line, count):
-            raise Exception("Not a dict line '{}', count {}".format(line, count))
+            # raise Exception("Not a dict line '{}', count {}".format(line, count))
+            return {}
+
 
         items = line.split(":")
         key = items[0][count:]
@@ -84,26 +100,13 @@ def processing_list(lst):
     res = []
     for item in yml_list:
         res.append(rec_parser(item))
+    if not res:
+        add_item(lst)
     return res
 
 
 def rec_parser(lst):
-    if isinstance(lst, list):
-        return processing_list(lst) or processing_dict(lst)
-    else:
-        if lst.find(": ") >= 0:
-            spl = lst.split(": ")
-            return {spl[0]: spl[1][0:-1]}
-        if lst.startswith('\'') and lst.endswith('\''):
-            return lst[1:]
-        elif lst.startswith('\'') and lst.endswith('\'\n'):
-            return lst[1:-2]
-        elif lst[0:-1].isdigit() and lst.endswith('\n'):
-            return int(lst[0:-1])
-        elif lst.isdigit():
-            return int(lst)
-        else:
-            raise IOError
+    return processing_list(lst) or processing_dict(lst) or add_item(lst)
 
 
 def yml_parser(file_name):
