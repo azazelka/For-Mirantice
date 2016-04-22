@@ -50,11 +50,10 @@ def processing_list(lst):
         if item.startswith(start_str) and item.find(":") >= 0:
             yml_list.append([])
             yml_list[-1].append(without_dash)
+        elif item.startswith(start_str + " -"):
+            yml_list.append([])
+            yml_list[-1].append(without_dash)
         elif item.startswith(start_str):
-            if item.startswith(start_str + " -"):
-                yml_list.append([])
-                yml_list[-1].append(without_dash)
-                continue
             yml_list.append(item[count + 2:] or [])
         elif len(yml_list):
             yml_list[-1].append(item)
@@ -88,5 +87,5 @@ def yml_parser(file_name):
     return rec_parser(str_list)
 
 
-print yml_parser('output2.yml')
-print st_parser('output2.yml')
+print yml_parser('file5.yml')
+print st_parser('file5.yml')
