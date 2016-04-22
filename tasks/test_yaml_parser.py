@@ -18,10 +18,14 @@ class TestYmlParser(unittest.TestCase):
     def test_dict_is_list_element(self):
         result = yaml_parser.st_parser('file4.yml')
         self.assertEqual(yaml_parser.yml_parser('file4.yml'), result)
-        #
-        # def stress_test(self):
-        #     result = yaml_parser.st_parser('output.yml')
-        #     self.assertEqual(yaml_parser.yml_parser('output.yml'), result)
+
+    def test_yml_dump_list_is_dict_element(self):
+        result = yaml_parser.st_parser('file5.yml')
+        self.assertEqual(yaml_parser.yml_parser('file5.yml'), result)
+
+    def test_yml_dump_list_is_list_element(self):
+        result = yaml_parser.st_parser('file6.yml')
+        self.assertEqual(yaml_parser.yml_parser('file6.yml'), result)
 
 
 if __name__ == '__main__':

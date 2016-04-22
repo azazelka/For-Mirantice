@@ -43,14 +43,20 @@ def processing_list(lst):
     yml_list = []
     count = count_space(lst)
     start_str = count * " " + "-"
+    if not str(lst[0]).startswith(start_str):
+        return []
     for item in lst:
+        without_dash = (count + 1) * " " + item[count + 1:]
         if item.startswith(start_str) and item.find(":") >= 0:
             yml_list.append([])
-            yml_list[len(yml_list) - 1].append((count+1)*" " + item[count + 1:])
+            yml_list[-1].append(without_dash)
+        elif item.startswith(start_str + " -"):
+            yml_list.append([])
+            yml_list[-1].append(without_dash)
         elif item.startswith(start_str):
             yml_list.append(item[count + 2:] or [])
         elif len(yml_list):
-            yml_list[len(yml_list) - 1].append(item)
+            yml_list[-1].append(item)
     res = []
     for item in yml_list:
         res.append(rec_parser(item))
@@ -80,12 +86,6 @@ def yml_parser(file_name):
     str_list = list(load_file(file_name))
     return rec_parser(str_list)
 
-#
-# result = {'a': [1, 2, 3, 4, 5, 0], 's': {'1': [1, 2]}}
-# r = yaml.dump(result, default_flow_style = False)
-# print r
-#
-# with open('output.yml', 'w') as fd:
-#     fd.write(r)
-#
-# print st_parser('output.yml')
+
+print yml_parser('file5.yml')
+print st_parser('file5.yml')
