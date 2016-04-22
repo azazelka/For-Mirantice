@@ -1,0 +1,96 @@
+diff --git a/tasks/yaml_parser.py b/tasks/yaml_parser.py
+index c53902d..d0e7a02 100644
+--- a/tasks/yaml_parser.py
++++ b/tasks/yaml_parser.py
+@@ -12,36 +12,61 @@ def load_file(filename):
+             yield item
+
+
+-def count_space(lst):
+-    for i, c in enumerate(lst[0]):
++def count_space(s):
++    for i, c in enumerate(s):
+         if c != ' ':
+             return i
+-    return len(lst[0])
++    return len(s)
++
++
++def is_dict_line(line, count):
++    if len(line) <= count:
++        return False
++
++    spaces = count * " "
++    if not line.startswith(spaces):
++        return False
++
++    if line[count] == " " or line[count] == "-":
++        return False
++
++    if line.find(":") < 0:
++        return False
++
++    return True
+
+
+ def processing_dict(lst):
+-    yml_dict = {}
+-    count = count_space(lst)
+-    last_dict_key = None
+-    for item in lst:
+-        if item[count] != " " and item.find(":") >= 0:
+-            a = item.split(":")
+-            element = a[1][1:]
+-            key = a[0][count:]
+-            yml_dict[key] = element or []
+-            if not yml_dict[key]:
+-                last_dict_key = key
+-        elif yml_dict:
+-            yml_dict[last_dict_key].append(item)
+-    res2 = {}
+-    for key in yml_dict:
+-        res2[key] = rec_parser(yml_dict[key])
+-    return res2
++    res = {}
++    data_iter = iter(lst)
++
++    line = next(data_iter)
++    count = count_space(line)
++
++    while line:
++        if not is_dict_line(line, count):
++            raise Exception("Not a dict line '{}', count {}".format(line, count))
++
++        items = line.split(":")
++        key = items[0][count:]
++        cur_value = items[1][1:]
++
++        value = []
++        if cur_value:
++            value = cur_value
++
++        line = next(data_iter, None)
++        while line and not is_dict_line(line, count):
++            value.append(line)
++            line = next(data_iter, None)
++        res[key] = rec_parser(value)
++
++    return res
+
+
+ def processing_list(lst):
+     yml_list = []
+-    count = count_space(lst)
++    count = count_space(lst[0])
+     start_str = count * " " + "-"
+     if not str(lst[0]).startswith(start_str):
+         return []
+@@ -87,5 +112,5 @@ def yml_parser(file_name):
+     return rec_parser(str_list)
+
+
+-print yml_parser('file5.yml')
+-print st_parser('file5.yml')
+\ No newline at end of file
++print yml_parser('file1.yml')
++print st_parser('file1.yml')
