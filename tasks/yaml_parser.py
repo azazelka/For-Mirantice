@@ -37,12 +37,9 @@ def is_dict_line(line, count):
 
 
 def add_item(str):
+    str = str.strip()
     if str.startswith('\'') and str.endswith('\''):
         return str[1:]
-    elif str.startswith('\'') and str.endswith('\'\n'):
-        return str[1:-2]
-    elif str[0:-1].isdigit() and str.endswith('\n'):
-        return int(str[0:-1])
     elif str.isdigit():
         return int(str)
     else:
@@ -58,9 +55,7 @@ def processing_dict(lst):
 
     while line:
         if not is_dict_line(line, count):
-            # raise Exception("Not a dict line '{}', count {}".format(line, count))
             return {}
-
 
         items = line.split(":")
         key = items[0][count:]
