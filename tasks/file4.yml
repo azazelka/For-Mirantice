@@ -1,0 +1,11 @@
+ - dict1: 'mydict'
+   dict3: 3
+ - dict2: 'mydict'
+   dict: 'midict'
+   div: 3
+   dic:
+     - 1
+     - 2
+     - 3
+     - d1: 1
+       d2: 2

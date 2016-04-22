@@ -44,7 +44,10 @@ def processing_list(lst):
     count = count_space(lst)
     start_str = count * " " + "-"
     for item in lst:
-        if item.startswith(start_str):
+        if item.startswith(start_str) and item.find(":") >= 0:
+            yml_list.append([])
+            yml_list[len(yml_list) - 1].append((count+1)*" " + item[count + 1:])
+        elif item.startswith(start_str):
             yml_list.append(item[count + 2:] or [])
         elif len(yml_list):
             yml_list[len(yml_list) - 1].append(item)
@@ -75,6 +78,14 @@ def rec_parser(lst):
 
 def yml_parser(file_name):
     str_list = list(load_file(file_name))
-    print str_list
     return rec_parser(str_list)
 
+#
+# result = {'a': [1, 2, 3, 4, 5, 0], 's': {'1': [1, 2]}}
+# r = yaml.dump(result, default_flow_style = False)
+# print r
+#
+# with open('output.yml', 'w') as fd:
+#     fd.write(r)
+#
+# print st_parser('output.yml')

@@ -2,10 +2,10 @@
  -
    -
      - 5
-     - dict3: dict
+     - dict3: 'dict'
  - 'str'
  -
    - 'list2_item1'
    - 'list2_item2'
- - dict1: mydict
- - dict2: mydict
+ - dict1: 'mydict'
+ - dict2: 'mydict'
