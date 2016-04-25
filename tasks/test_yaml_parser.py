@@ -1,9 +1,11 @@
+import string
 import unittest
+from logging import log
 
 import yaml
 
 import yaml_parser
-from random import randint
+from random import randint, choice
 import structure_generator
 
 
@@ -33,14 +35,19 @@ class TestYmlParser(unittest.TestCase):
         self.assertEqual(yaml_parser.yml_parser('file6.yml'), result)
 
     def test_stress(self):
-        for i in range(50):
+        for i in range(500):
             depth = randint(1, 4)
             size = randint(1, 10)
-            structure = structure_generator.structure_generator(size, depth)
-            result = yaml.dump(structure.structure, default_flow_style=False)
-            with open('res.yml', 'w') as fd:
+            seed = randint(0, 9999999999)
+
+            structure = structure_generator.structure_generator(size, depth, seed).structure
+            result = yaml.dump(structure, default_flow_style=False)
+            # res = result.split('\n')
+            print i, seed
+            with open ("res.yml", 'w')as fd:
                 fd.write(result)
-            self.assertEqual(yaml_parser.yml_parser('res.yml'), structure.structure)
+            # self.assertEqual(yaml_parser.rec_parser(res), structure)
+            self.assertEqual(yaml_parser.yml_parser("res.yml"), structure)
 
 if __name__ == '__main__':
     unittest.main()

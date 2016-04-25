@@ -3,17 +3,23 @@ import string
 
 
 class structure_generator(object):
-    def __init__(self, size, depth):
+    def __init__(self, size, depth, seed):
         self._size = size
         self._depth = depth
-        self.structure = self._get_structure()
+        self._random = random.Random(seed)
+        self._structure = self._get_structure()
+
+    @property
+    def structure(self):
+        return self._structure
 
     def _num_creator(self):
-        return random.randint(0, 100)
+        return self._random.randint(0, 100)
 
     def _str_creator(self):
-        a = string.ascii_letters + string.digits
-        return ''.join([random.choice(a) for i in range(5)])
+        a = string.ascii_letters + string.digits #+ ":"
+        c = self._random.randint(5, 10)
+        return ''.join([random.choice(a) for i in range(c)])
 
     def _list_creator(self, size, depth):
         res = []
@@ -30,20 +36,21 @@ class structure_generator(object):
         return res or 1
 
     def _rec_generator(self, size, depth):
-        case = random.randint(0, 3)
+        sd = size + depth
+        case = self._random.randint(0, sd + 2)
         depth -= 1
         size -= size * depth / self._depth
-        if case == 0:
+        if case <= (sd)/2:
             return self._list_creator(size, depth)
-        if case == 1:
+        if case <= sd:
             return self._dict_creator(size, depth)
-        if case == 2:
+        if case == sd + 1:
             return self._str_creator()
-        if case == 3:
+        if case == sd + 2:
             return self._num_creator()
 
     def _get_structure(self):
-        case = random.randint(0, 1)
+        case = self._random.randint(0, 1)
         res = []
         if case:
             res = {}
@@ -53,3 +60,4 @@ class structure_generator(object):
             for i in range(self._size):
                 res.append(self._rec_generator(self._size, self._depth))
         return res
+

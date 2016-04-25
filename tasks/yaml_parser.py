@@ -67,6 +67,30 @@ def processing_dict(lst):
     count = count_space(line)
 
     while line:
+        # if not is_dict_line(line, count):
+        #     return {}
+        #
+        # items = line.split(": ")
+        # cur_value = items[len(items) - 1][0:]
+        #
+        # if len(items) == 1:
+        #     items = line.split(":")
+        #     cur_value = items[len(items) - 1][1:]
+        #     if cur_value:
+        #         cur_value = []
+        #
+        # key = line[count: -len(cur_value)-2]
+        #
+        #
+        #
+        # if key.startswith('\'') and key.endswith('\''):
+        #     key = key[1: -1]
+        #
+        #
+        #
+        # value = []
+        # if cur_value:
+        #     value = [cur_value]
         if not is_dict_line(line, count):
             return {}
 
@@ -77,6 +101,9 @@ def processing_dict(lst):
         value = []
         if cur_value:
             value = [cur_value]
+
+        if key.startswith('\'') and key.endswith('\''):
+            key = key[1: -1]
 
         line = next(data_iter, None)
         while line and not is_dict_line(line, count):
