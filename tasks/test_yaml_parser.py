@@ -35,16 +35,19 @@ class TestYmlParser(unittest.TestCase):
         self.assertEqual(yaml_parser.yml_parser('file6.yml'), result)
 
     def test_stress(self):
-        for i in range(5000):
-            depth = randint(1, 6)
-            size = randint(1, 20)
+        for i in range(500):
+            depth = randint(1, 4)
+            size = randint(1, 10)
             seed = randint(0, 9999999999)
 
             structure = structure_generator.structure_generator(size, depth, seed).structure
             result = yaml.dump(structure, default_flow_style=False)
-            res = result.split('\n')
-            # print i, seed
-            self.assertEqual(yaml_parser.rec_parser(res), structure)
+            # res = result.split('\n')
+            print i, seed
+            with open ("res.yml", 'w')as fd:
+                fd.write(result)
+            # self.assertEqual(yaml_parser.rec_parser(res), structure)
+            self.assertEqual(yaml_parser.yml_parser("res.yml"), structure)
 
 if __name__ == '__main__':
     unittest.main()
