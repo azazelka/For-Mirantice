@@ -27,8 +27,9 @@ def is_dict_line(line, count):
     if not line.startswith(spaces):
         return False
 
-    if line[count] == " " or line[count] == "-":
-        return False
+    # if line[count] == " " or line[count] == "-":
+    #     return False
+
 
     if line.find(":") < 0:
         return False
@@ -44,8 +45,9 @@ def is_list_line(line, count):
 
     if not line.startswith(start_str):
         return False
-
-    return True
+    if  line.startswith(start_str + " ") or line.startswith(start_str + "\n"):
+        return True
+    return False
 
 
 def add_item(line):
