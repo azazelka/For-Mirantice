@@ -37,11 +37,15 @@ def is_dict_line(line, count):
 
 
 def is_list_line(line, count):
+    start_str = count * " " + "-"
+
     if len(line) <= count:
         return False
-    if line[count] == "-":
-        return True
-    return False
+
+    if not line.startswith(start_str):
+        return False
+
+    return True
 
 
 def add_item(line):
@@ -115,6 +119,3 @@ def rec_parser(lst):
 def yml_parser(file_name):
     str_list = list(load_file(file_name))
     return rec_parser(str_list)
-
-
-print yml_parser('file1.yml')
