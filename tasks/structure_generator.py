@@ -17,7 +17,7 @@ class structure_generator(object):
         return self._random.randint(0, 100)
 
     def _str_creator(self):
-        a = string.ascii_letters + string.digits + ":"
+        a = string.ascii_letters + string.digits + ":" + "-"
         c = self._random.randint(5, 10)
         return ''.join([random.choice(a) for i in range(c)])
 
