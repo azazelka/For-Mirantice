@@ -2,6 +2,5 @@ item1: 1
 item2:
    item1:
      - 2
-     - 3
    item2: 2
 item3: 3
