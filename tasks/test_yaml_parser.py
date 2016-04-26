@@ -33,7 +33,7 @@ class TestYmlParser(unittest.TestCase):
         result = yaml_parser.st_parser('file6.yml')
         self.assertEqual(yaml_parser.yml_parser('file6.yml'), result)
 
-    @cycle_decorator
+    @cycle_decorator(5000)
     def test_stress(self):
         depth = randint(1, 4)
         size = randint(1, 5)
