@@ -27,11 +27,13 @@ def is_dict_line(line, count):
     if not line.startswith(spaces):
         return False
 
-    # if line[count] == " " or line[count] == "-":
-    #     return False
-
+    if line[count] == " " or line[count:count + 2] == "- ":
+        return False
 
     if line.find(":") < 0:
+        return False
+
+    if line.find(": ") < 0 and line[-2] != ":":
         return False
 
     return True
@@ -45,8 +47,10 @@ def is_list_line(line, count):
 
     if not line.startswith(start_str):
         return False
-    if  line.startswith(start_str + " ") or line.startswith(start_str + "\n"):
+
+    if line.startswith(start_str + " ") or line.startswith(start_str + "\n"):
         return True
+
     return False
 
 
@@ -54,6 +58,8 @@ def add_item(line):
     line = line[0]
     line = line.strip()
     if line.isdigit():
+        if line.startswith('0') and len(line) > 1:
+            return line
         return int(line)
     if line.startswith('\'') and line.endswith('\''):
         return line[1:-1]
@@ -69,36 +75,17 @@ def processing_dict(lst):
     count = count_space(line)
 
     while line:
-        # if not is_dict_line(line, count):
-        #     return {}
-        #
-        # items = line.split(": ")
-        # cur_value = items[len(items) - 1][0:]
-        #
-        # if len(items) == 1:
-        #     items = line.split(":")
-        #     cur_value = items[len(items) - 1][1:]
-        #     if cur_value:
-        #         cur_value = []
-        #
-        # key = line[count: -len(cur_value)-2]
-        #
-        #
-        #
-        # if key.startswith('\'') and key.endswith('\''):
-        #     key = key[1: -1]
-        #
-        #
-        #
-        # value = []
-        # if cur_value:
-        #     value = [cur_value]
         if not is_dict_line(line, count):
             return {}
 
-        items = line.split(":")
-        key = items[0][count:]
-        cur_value = items[1][1:]
+        items = line.split(": ")
+
+        if len(items) == 1:
+            key = line[count:-2]
+            cur_value = []
+        else:
+            key = items[0][count:]
+            cur_value = items[1][0:]
 
         value = []
         if cur_value:
@@ -148,3 +135,7 @@ def rec_parser(lst):
 def yml_parser(file_name):
     str_list = list(load_file(file_name))
     return rec_parser(str_list)
+
+
+# print yml_parser("res.yml")
+# print st_parser("res.yml")
