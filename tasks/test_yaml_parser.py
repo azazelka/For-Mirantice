@@ -1,9 +1,9 @@
+from random import randint
 import unittest
 
 import yaml
 
 import yaml_parser
-from random import randint
 import structure_generator
 from cycle_decorator import cycle_decorator
 
@@ -33,14 +33,17 @@ class TestYmlParser(unittest.TestCase):
         result = yaml_parser.st_parser('file6.yml')
         self.assertEqual(yaml_parser.yml_parser('file6.yml'), result)
 
-    @cycle_decorator(5000)
+    @cycle_decorator(500)
     def test_stress(self):
         depth = randint(1, 4)
         size = randint(1, 5)
         seed = randint(0, 9999999999)
 
+
         structure = structure_generator.structure_generator(size, depth, seed).structure
         result = yaml.dump(structure, default_flow_style=False)
+        #
+        # print result
         # res = result.split('\n')
         print depth, size, seed
         with open("res.yml", 'w')as fd:
