@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3b6af9b-b864-49a1-852e-ed29a78d9845" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MANIFEST.in" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/tests/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/tests/res.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/tests/test_yaml_parser.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tasks/patch.patch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tasks/res.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tasks/test_yaml_parser.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignor" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/venv/README" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tasks/cycle_decorator.py" afterPath="$PROJECT_DIR$/tasks/tests/cycle_decorator.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tasks/file1.yml" afterPath="$PROJECT_DIR$/tasks/tests/file1.yml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tasks/file2.yml" afterPath="$PROJECT_DIR$/tasks/tests/file2.yml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tasks/file3.yml" afterPath="$PROJECT_DIR$/tasks/tests/file3.yml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tasks/file4.yml" afterPath="$PROJECT_DIR$/tasks/tests/file4.yml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tasks/file5.yml" afterPath="$PROJECT_DIR$/tasks/tests/file5.yml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tasks/file6.yml" afterPath="$PROJECT_DIR$/tasks/tests/file6.yml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tasks/structure_generator.py" afterPath="$PROJECT_DIR$/tasks/tests/structure_generator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="untitled.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,8 +46,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignor" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignor">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
@@ -221,20 +208,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -966,7 +939,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignor">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
