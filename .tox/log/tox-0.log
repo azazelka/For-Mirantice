@@ -1,0 +1,53 @@
+actionid: tox
+msg: packaging
+cmdargs: ['/home/atolochkova/PycharmProjects/virtualenv/tasks/bin/python2.7', local('/home/atolochkova/PycharmProjects/project/setup.py'), 'sdist', '--formats=zip', '--dist-dir', local('/home/atolochkova/PycharmProjects/project/.tox/dist')]
+env: None
+
+running sdist
+running egg_info
+writing requirements to yaml_parser.egg-info/requires.txt
+writing yaml_parser.egg-info/PKG-INFO
+writing top-level names to yaml_parser.egg-info/top_level.txt
+writing dependency_links to yaml_parser.egg-info/dependency_links.txt
+reading manifest file 'yaml_parser.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: manifest_maker: MANIFEST.in, line 1: unknown action 'setup.py'
+
+warning: no files found matching '*.txt' under directory 'tasks'
+writing manifest file 'yaml_parser.egg-info/SOURCES.txt'
+warning: sdist: standard file not found: should have one of README, README.rst, README.txt
+
+running check
+warning: check: missing required meta-data: url
+
+warning: check: missing meta-data: either (author and author_email) or (maintainer and maintainer_email) must be supplied
+
+creating yaml_parser-1.3
+creating yaml_parser-1.3/tasks
+creating yaml_parser-1.3/yaml_parser.egg-info
+making hard links in yaml_parser-1.3...
+hard linking MANIFEST.in -> yaml_parser-1.3
+hard linking setup.py -> yaml_parser-1.3
+hard linking tasks/__init__.py -> yaml_parser-1.3/tasks
+hard linking tasks/intersection.py -> yaml_parser-1.3/tasks
+hard linking tasks/yaml_parser.py -> yaml_parser-1.3/tasks
+hard linking yaml_parser.egg-info/PKG-INFO -> yaml_parser-1.3/yaml_parser.egg-info
+hard linking yaml_parser.egg-info/SOURCES.txt -> yaml_parser-1.3/yaml_parser.egg-info
+hard linking yaml_parser.egg-info/dependency_links.txt -> yaml_parser-1.3/yaml_parser.egg-info
+hard linking yaml_parser.egg-info/requires.txt -> yaml_parser-1.3/yaml_parser.egg-info
+hard linking yaml_parser.egg-info/top_level.txt -> yaml_parser-1.3/yaml_parser.egg-info
+Writing yaml_parser-1.3/setup.cfg
+creating '.tox/dist/yaml_parser-1.3.zip' and adding 'yaml_parser-1.3' to it
+adding 'yaml_parser-1.3/setup.cfg'
+adding 'yaml_parser-1.3/MANIFEST.in'
+adding 'yaml_parser-1.3/setup.py'
+adding 'yaml_parser-1.3/PKG-INFO'
+adding 'yaml_parser-1.3/tasks/yaml_parser.py'
+adding 'yaml_parser-1.3/tasks/intersection.py'
+adding 'yaml_parser-1.3/tasks/__init__.py'
+adding 'yaml_parser-1.3/yaml_parser.egg-info/dependency_links.txt'
+adding 'yaml_parser-1.3/yaml_parser.egg-info/SOURCES.txt'
+adding 'yaml_parser-1.3/yaml_parser.egg-info/top_level.txt'
+adding 'yaml_parser-1.3/yaml_parser.egg-info/requires.txt'
+adding 'yaml_parser-1.3/yaml_parser.egg-info/PKG-INFO'
+removing 'yaml_parser-1.3' (and everything under it)
