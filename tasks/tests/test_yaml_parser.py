@@ -1,5 +1,6 @@
 import unittest
 from random import randint
+import logging
 
 import yaml
 
@@ -33,7 +34,7 @@ class TestYmlParser(unittest.TestCase):
         result = tasks.yaml_parser.st_parser('file6.yml')
         self.assertEqual(tasks.yaml_parser.yml_parser('file6.yml'), result)
 
-    @cycle_decorator(500)
+    @cycle_decorator(5000)
     def test_stress(self):
         depth = randint(1, 4)
         size = randint(1, 5)
@@ -41,10 +42,11 @@ class TestYmlParser(unittest.TestCase):
 
         structure = StructureGenerator(size, depth, seed).structure
         result = yaml.dump(structure, default_flow_style=False)
-        #
-        # print result
-        # res = result.split('\n')
-        print (depth, size, seed)
+
+        logging.basicConfig(format=u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s',
+                            level=logging.DEBUG, filename=u'mylog.log')
+        logging.debug('Depth: {0}, size: {1}, seed: {2}'.format(depth, size, seed))
+
         with open("res.yml", 'w')as fd:
             fd.write(result)
         self.assertEqual(tasks.yaml_parser.yml_parser("res.yml"), structure)
