@@ -2,7 +2,7 @@ import random
 import string
 
 
-class structure_generator(object):
+class StructureGenerator(object):
     def __init__(self, size, depth, seed):
         self._size = size
         self._depth = depth
@@ -39,7 +39,7 @@ class structure_generator(object):
         sd = size + depth
         case = self._random.randint(0, sd + 2)
         depth -= 1
-        size -= size * depth / self._depth
+        size -= size * depth // self._depth
         if case <= (sd)/2:
             return self._list_creator(size, depth)
         if case <= sd:
@@ -60,4 +60,3 @@ class structure_generator(object):
             for i in range(self._size):
                 res.append(self._rec_generator(self._size, self._depth))
         return res
-
