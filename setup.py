@@ -5,6 +5,6 @@ setup(
     version='1.3',
     packages=find_packages(),
     install_requires=[
-        "PyYAML"
+        "PyYAML", 'pytest'
     ],
 )
